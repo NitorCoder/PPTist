@@ -1,15 +1,15 @@
 <template>
   <div class="slide-design-panel">
-    <div class="title">背景填充</div>
+    <div class="title">Tô màu nền</div>
     <div class="row">
       <Select 
         style="flex: 1;" 
         :value="background.type" 
         @update:value="value => updateBackgroundType(value as 'gradient' | 'image' | 'solid')"
         :options="[
-          { label: '纯色填充', value: 'solid' },
-          { label: '图片填充', value: 'image' },
-          { label: '渐变填充', value: 'gradient' },
+          { label: 'Đổ màu đồng nhất', value: 'solid' },
+          { label: 'Hình ảnh', value: 'image' },
+          { label: 'Đổ màu chuyển tiếp', value: 'gradient' },
         ]"
       />
       <div style="width: 10px;"></div>
@@ -30,9 +30,9 @@
         @update:value="value => updateBackground({ imageSize: value as 'repeat' | 'cover' | 'contain' })"
         v-else-if="background.type === 'image'"
         :options="[
-          { label: '缩放', value: 'contain' },
-          { label: '拼贴', value: 'repeat' },
-          { label: '缩放铺满', value: 'cover' },
+          { label: 'Phóng to hoặc Thu nhỏ', value: 'contain' },
+          { label: 'Ghép ảnh', value: 'repeat' },
+          { label: 'Thu phóng để lấp đầy', value: 'cover' },
         ]"
       />
 
@@ -42,8 +42,8 @@
         @update:value="value => updateBackground({ gradientType: value as 'linear' | 'radial' })"
         v-else
         :options="[
-          { label: '线性渐变', value: 'linear' },
-          { label: '径向渐变', value: 'radial' },
+          { label: 'Linear', value: 'linear' },
+          { label: 'Radial', value: 'radial' },
         ]"
       />
     </div>
@@ -60,7 +60,7 @@
 
     <div class="background-gradient-wrapper" v-if="background.type === 'gradient'">
       <div class="row">
-        <div style="width: 40%;">起点颜色：</div>
+        <div style="width: 40%;">Màu điểm xuất phát：</div>
         <Popover trigger="click" style="width: 60%;">
           <template #content>
             <ColorPicker
@@ -72,7 +72,7 @@
         </Popover>
       </div>
       <div class="row">
-        <div style="width: 40%;">终点颜色：</div>
+        <div style="width: 40%;">Màu điểm kết thúc：</div>
         <Popover trigger="click" style="width: 60%;">
           <template #content>
             <ColorPicker
@@ -84,7 +84,7 @@
         </Popover>
       </div>
       <div class="row" v-if="background.gradientType === 'linear'">
-        <div style="width: 40%;">渐变角度：</div>
+        <div style="width: 40%;">Góc chuyển đổi màu：</div>
         <Slider
           :min="0"
           :max="360"
@@ -97,22 +97,22 @@
     </div>
 
     <div class="row">
-      <Button style="flex: 1;" @click="applyBackgroundAllSlide()">应用背景到全部</Button>
+      <Button style="flex: 1;" @click="applyBackgroundAllSlide()">Áp dụng nền cho tất cả</Button>
     </div>
 
     <Divider />
 
     <div class="row">
-      <div style="width: 40%;">画布尺寸：</div>
+      <div style="width: 40%;">Kích thước bảng vẽ：</div>
       <Select 
         style="width: 60%;" 
         :value="viewportRatio" 
         @update:value="value => updateViewportRatio(value as number)"
         :options="[
-          { label: '宽屏 16 : 9', value: 0.5625 },
-          { label: '宽屏 16 : 10', value: 0.625 },
-          { label: '标准 4 : 3', value: 0.75 },
-          { label: '纸张 A3 / A4', value: 0.70710678 },
+          { label: 'Tỉ lệ 16 : 9', value: 0.5625 },
+          { label: 'Tỉ lệ 16 : 10', value: 0.625 },
+          { label: 'Tỉ lệ 4 : 3', value: 0.75 },
+          { label: 'Tỉ lệ A3 / A4', value: 0.70710678 },
         ]"
       />
     </div>
@@ -120,15 +120,15 @@
     <Divider />
 
     <div class="title">
-      <span>全局主题</span>
+      <span>Tiêu đề</span>
       <span class="more" @click="moreThemeConfigsVisible = !moreThemeConfigsVisible">
-        <span class="text">更多</span>
+        <span class="text">Thêm</span>
         <IconDown v-if="moreThemeConfigsVisible" />
         <IconRight v-else />
       </span>
     </div>
     <div class="row">
-      <div style="width: 40%;">字体：</div>
+      <div style="width: 40%;">Phông chữ：</div>
       <Select
         style="width: 60%;"
         :value="theme.fontName"
@@ -140,7 +140,7 @@
       />
     </div>
     <div class="row">
-      <div style="width: 40%;">字体颜色：</div>
+      <div style="width: 40%;">Màu chữ：</div>
       <Popover trigger="click" style="width: 60%;">
         <template #content>
           <ColorPicker
@@ -152,7 +152,7 @@
       </Popover>
     </div>
     <div class="row">
-      <div style="width: 40%;">背景颜色：</div>
+      <div style="width: 40%;">Màu nền：</div>
       <Popover trigger="click" style="width: 60%;">
         <template #content>
           <ColorPicker
@@ -164,7 +164,7 @@
       </Popover>
     </div>
     <div class="row">
-      <div style="width: 40%;">主题色：</div>
+      <div style="width: 40%;">Màu chủ đề：</div>
       <Popover trigger="click" style="width: 60%;">
         <template #content>
           <ColorPicker
@@ -178,19 +178,19 @@
     
     <template v-if="moreThemeConfigsVisible">
       <div class="row">
-        <div style="width: 40%;">边框样式：</div>
+        <div style="width: 40%;">Kiểu đường viền：</div>
         <Select 
           style="width: 60%;" 
           :value="theme.outline.style || ''" 
           @update:value="value => updateTheme({ outline: { ...theme.outline, style: value as 'dashed' | 'solid' } })"
           :options="[
-            { label: '实线边框', value: 'solid' },
-            { label: '虚线边框', value: 'dashed' },
+            { label: 'Đường viền thẳng', value: 'solid' },
+            { label: 'Đường viền nét đứt', value: 'dashed' },
           ]"
         />
       </div>
       <div class="row">
-        <div style="width: 40%;">边框颜色：</div>
+        <div style="width: 40%;">Màu đường viền：</div>
         <Popover trigger="click" style="width: 60%;">
           <template #content>
             <ColorPicker
@@ -202,7 +202,7 @@
         </Popover>
       </div>
       <div class="row">
-        <div style="width: 40%;">边框粗细：</div>
+        <div style="width: 40%;">Độ dày đường viền：</div>
         <NumberInput 
           :value="theme.outline.width || 0" 
           @update:value="value => updateTheme({ outline: { ...theme.outline, width: value } })" 
@@ -210,7 +210,7 @@
         />
       </div>
       <div class="row" style="height: 30px;">
-        <div style="width: 40%;">水平阴影：</div>
+        <div style="width: 40%;">Bóng ngang：</div>
         <Slider 
           style="width: 60%;"
           :min="-10" 
@@ -221,7 +221,7 @@
         />
       </div>
       <div class="row" style="height: 30px;">
-        <div style="width: 40%;">垂直阴影：</div>
+        <div style="width: 40%;">Bóng dọc：</div>
         <Slider
           style="width: 60%;"
           :min="-10"
@@ -232,7 +232,7 @@
         />
       </div>
       <div class="row" style="height: 30px;">
-        <div style="width: 40%;">模糊距离：</div>
+        <div style="width: 40%;">Khoảng cách mờ：</div>
         <Slider
           style="width: 60%;"
           :min="1"
@@ -243,7 +243,7 @@
         />
       </div>
       <div class="row">
-        <div style="width: 40%;">阴影颜色：</div>
+        <div style="width: 40%;">Màu bóng：</div>
         <Popover trigger="click" style="width: 60%;">
           <template #content>
             <ColorPicker
@@ -257,12 +257,12 @@
     </template>
 
     <div class="row">
-      <Button style="flex: 1;" @click="applyThemeToAllSlides(moreThemeConfigsVisible)">应用主题到全部</Button>
+      <Button style="flex: 1;" @click="applyThemeToAllSlides(moreThemeConfigsVisible)">Áp dụng chủ đề cho tất cả</Button>
     </div>
 
     <Divider />
 
-    <div class="title">预置主题</div>
+    <div class="title">Chủ đề được thiết lập sẵn</div>
     <div class="theme-list">
       <div 
         class="theme-item" 
@@ -274,14 +274,14 @@
         }"
       >
         <div class="theme-item-content">
-          <div class="text" :style="{ color: item.fontColor }">文字 Aa</div>
+          <div class="text" :style="{ color: item.fontColor }">Văn bản Aa</div>
           <div class="colors">
             <div class="color-block" v-for="(color, index) in item.colors" :key="index" :style="{ backgroundColor: color}"></div>
           </div>
 
           <div class="btns">
-            <div class="btn" @click="applyPresetThemeToSingleSlide(item)">应用</div>
-            <div class="btn" @click="applyPresetThemeToAllSlides(item)">应用全局</div>
+            <div class="btn" @click="applyPresetThemeToSingleSlide(item)">Áp dụng</div>
+            <div class="btn" @click="applyPresetThemeToAllSlides(item)">Áp dụng cho tất cả</div>
           </div>
         </div>
       </div>

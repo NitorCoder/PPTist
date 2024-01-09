@@ -75,70 +75,70 @@ const { selectAllElement } = useSelectAllElement()
 const contextmenus = (): ContextmenuItem[] => {
   if (props.elementInfo.lock) {
     return [{
-      text: '解锁', 
+      text: 'Mở khóa', 
       handler: () => unlockElement(props.elementInfo),
     }]
   }
 
   return [
     {
-      text: '剪切',
+      text: 'Cắt',
       subText: 'Ctrl + X',
       handler: cutElement,
     },
     {
-      text: '复制',
+      text: 'Sao chép',
       subText: 'Ctrl + C',
       handler: copyElement,
     },
     {
-      text: '粘贴',
+      text: 'Dán',
       subText: 'Ctrl + V',
       handler: pasteElement,
     },
     { divider: true },
     {
-      text: '水平居中',
+      text: 'Canh giữa theo chiều ngang',
       handler: () => alignElementToCanvas(ElementAlignCommands.HORIZONTAL),
       children: [
-        { text: '水平垂直居中', handler: () => alignElementToCanvas(ElementAlignCommands.CENTER), },
-        { text: '水平居中', handler: () => alignElementToCanvas(ElementAlignCommands.HORIZONTAL) },
-        { text: '左对齐', handler: () => alignElementToCanvas(ElementAlignCommands.LEFT) },
-        { text: '右对齐', handler: () => alignElementToCanvas(ElementAlignCommands.RIGHT) },
+        { text: '"Canh giữa cả ngang và dọc', handler: () => alignElementToCanvas(ElementAlignCommands.CENTER), },
+        { text: 'Canh giữa ngang', handler: () => alignElementToCanvas(ElementAlignCommands.HORIZONTAL) },
+        { text: 'Căn trái', handler: () => alignElementToCanvas(ElementAlignCommands.LEFT) },
+        { text: 'Căn phải', handler: () => alignElementToCanvas(ElementAlignCommands.RIGHT) },
       ],
     },
     {
-      text: '垂直居中',
+      text: 'Canh giữa theo chiều dọc',
       handler: () => alignElementToCanvas(ElementAlignCommands.VERTICAL),
       children: [
-        { text: '水平垂直居中', handler: () => alignElementToCanvas(ElementAlignCommands.CENTER) },
-        { text: '垂直居中', handler: () => alignElementToCanvas(ElementAlignCommands.VERTICAL) },
-        { text: '顶部对齐', handler: () => alignElementToCanvas(ElementAlignCommands.TOP) },
-        { text: '底部对齐', handler: () => alignElementToCanvas(ElementAlignCommands.BOTTOM) },
+        { text: 'Canh giữa cả ngang và dọc', handler: () => alignElementToCanvas(ElementAlignCommands.CENTER) },
+        { text: 'Canh giữa theo chiều dọc', handler: () => alignElementToCanvas(ElementAlignCommands.VERTICAL) },
+        { text: 'Căn trên cùng', handler: () => alignElementToCanvas(ElementAlignCommands.TOP) },
+        { text: 'Căn đáy', handler: () => alignElementToCanvas(ElementAlignCommands.BOTTOM) },
       ],
     },
     { divider: true },
     {
-      text: '置于顶层',
+      text: 'Đặt ở lớp trên cùng',
       disable: props.isMultiSelect && !props.elementInfo.groupId,
       handler: () => orderElement(props.elementInfo, ElementOrderCommands.TOP),
       children: [
-        { text: '置于顶层', handler: () => orderElement(props.elementInfo, ElementOrderCommands.TOP) },
-        { text: '上移一层', handler: () => orderElement(props.elementInfo, ElementOrderCommands.UP) },
+        { text: 'Đặt lên đỉnh', handler: () => orderElement(props.elementInfo, ElementOrderCommands.TOP) },
+        { text: 'Di chuyển lên một lớp', handler: () => orderElement(props.elementInfo, ElementOrderCommands.UP) },
       ],
     },
     {
-      text: '置于底层',
+      text: 'Đặt xuống đáy',
       disable: props.isMultiSelect && !props.elementInfo.groupId,
       handler: () => orderElement(props.elementInfo, ElementOrderCommands.BOTTOM),
       children: [
-        { text: '置于底层', handler: () => orderElement(props.elementInfo, ElementOrderCommands.BOTTOM) },
-        { text: '下移一层', handler: () => orderElement(props.elementInfo, ElementOrderCommands.DOWN) },
+        { text: 'Đặt xuống đáy', handler: () => orderElement(props.elementInfo, ElementOrderCommands.BOTTOM) },
+        { text: 'Di chuyển xuống một lớp', handler: () => orderElement(props.elementInfo, ElementOrderCommands.DOWN) },
       ],
     },
     { divider: true },
     {
-      text: '设置链接',
+      text: 'Tạo liên kết',
       handler: props.openLinkDialog,
     },
     {
@@ -148,17 +148,17 @@ const contextmenus = (): ContextmenuItem[] => {
       hide: !props.isMultiSelect,
     },
     {
-      text: '全选',
+      text: 'Chọn tất cả',
       subText: 'Ctrl + A',
       handler: selectAllElement,
     },
     {
-      text: '锁定',
+      text: 'Khóa',
       subText: 'Ctrl + L',
       handler: lockElement,
     },
     {
-      text: '删除',
+      text: 'Xóa',
       subText: 'Delete',
       handler: deleteElement,
     },
